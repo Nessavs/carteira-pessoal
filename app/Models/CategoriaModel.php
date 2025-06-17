@@ -8,12 +8,14 @@ class CategoriaModel extends Model
 {
     protected $table         = 'categorias';
     protected $primaryKey    = 'id';
-    protected $allowedFields = ['nome', 'tipo'];
+    protected $allowedFields = ['nome', 'tipo', 'valor'];   // ← novo campo
     protected $useTimestamps = true;
 
+    /** Regras de validação */
     protected $validationRules = [
-        'nome' => 'required|max_length[100]|is_unique[categorias.nome,id,{id}]',
-        'tipo' => 'required|in_list[receita,despesa]',
+        'nome'  => 'required|max_length[100]|is_unique[categorias.nome,id,{id}]',
+        'tipo'  => 'required|in_list[receita,despesa]',
+        'valor' => 'permit_empty|decimal|greater_than_equal_to[0]',      // ← regra para valor
     ];
 
     /** Mensagens em PT-BR */
@@ -26,6 +28,10 @@ class CategoriaModel extends Model
         'tipo' => [
             'required' => 'O campo Tipo é obrigatório.',
             'in_list'  => 'Tipo inválido. Escolha Receita ou Despesa.',
+        ],
+        'valor' => [
+            'decimal'                  => 'O Valor deve ser numérico.',
+            'greater_than_equal_to'    => 'O Valor não pode ser negativo.',
         ],
     ];
 }

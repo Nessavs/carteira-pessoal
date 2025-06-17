@@ -12,6 +12,6 @@
         <input type="password" name="senha" required><br>
         <button type="submit">Registrar</button>
     </form>
-    <p>Já tem conta? <a href="/">Faça login</a></p>
+    <p>Já tem conta? <a href="/">Faça login</a></p> 
 </body>
 </html>
