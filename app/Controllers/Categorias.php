@@ -37,7 +37,8 @@ class Categorias extends BaseController
     /* ------------------------------------------------------------------ */
     public function store()
     {
-        $data = $this->request->getPost(['nome', 'tipo']);
+        // agora inclui 'valor'
+        $data = $this->request->getPost(['nome', 'tipo', 'valor']);
 
         if (! $this->validate($this->model->getValidationRules(), [], $data)) {
             return view('categorias/form', [
@@ -69,10 +70,10 @@ class Categorias extends BaseController
     /* ------------------------------------------------------------------ */
     public function update($id)
     {
-        // pega apenas nome e tipo
-        $dataInput = $this->request->getPost(['nome', 'tipo']);
+        // pega nome, tipo e valor
+        $dataInput = $this->request->getPost(['nome', 'tipo', 'valor']);
 
-        // adiciona o id só para a validação (placeholder {id})
+        // adiciona id só para validação
         $dataForValidation = $dataInput + ['id' => $id];
 
         if (! $this->validate($this->model->getValidationRules(), [], $dataForValidation)) {
@@ -82,7 +83,6 @@ class Categorias extends BaseController
             ]);
         }
 
-        // grava sem enviar id no payload
         $this->model->update($id, $dataInput);
         return redirect()->to(site_url('categorias'));
     }

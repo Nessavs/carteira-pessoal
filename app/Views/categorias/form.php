@@ -21,11 +21,13 @@ $action  = $editing
 <form method="post" action="<?= $action ?>">
     <?= csrf_field() ?>
 
+    <!-- Nome -->
     <label>Nome<br>
         <input type="text" name="nome"
-               value="<?= esc($categoria['nome'] ?? '') ?>">
+               value="<?= esc($categoria['nome'] ?? '') ?>" required>
     </label><br><br>
 
+    <!-- Tipo -->
     <label>Tipo<br>
         <select name="tipo" required>
             <option value="">-- selecione --</option>
@@ -38,6 +40,12 @@ $action  = $editing
                 Despesa
             </option>
         </select>
+    </label><br><br>
+
+    <!-- Valor (opcional) -->
+    <label>Valor (opcional)<br>
+        <input type="number" name="valor" step="0.01" min="0"
+               value="<?= esc($categoria['valor'] ?? '') ?>">
     </label><br><br>
 
     <button type="submit">Salvar</button>
