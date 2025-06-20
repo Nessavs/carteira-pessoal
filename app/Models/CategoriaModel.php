@@ -8,17 +8,15 @@ class CategoriaModel extends Model
 {
     protected $table         = 'categorias';
     protected $primaryKey    = 'id';
-    protected $allowedFields = ['nome', 'tipo', 'valor'];   // ← novo campo
+    protected $allowedFields = ['nome', 'tipo', 'valor'];
     protected $useTimestamps = true;
 
-    /** Regras de validação */
     protected $validationRules = [
         'nome'  => 'required|max_length[100]|is_unique[categorias.nome,id,{id}]',
         'tipo'  => 'required|in_list[receita,despesa]',
-        'valor' => 'permit_empty|decimal|greater_than_equal_to[0]',      // ← regra para valor
+        'valor' => 'permit_empty|decimal|greater_than_equal_to[0]',
     ];
 
-    /** Mensagens em PT-BR */
     protected $validationMessages = [
         'nome' => [
             'required'   => 'O campo Nome é obrigatório.',

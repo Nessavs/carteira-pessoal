@@ -14,9 +14,6 @@ class Categorias extends BaseController
         helper(['form', 'url']);
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  LISTAGEM                                                          */
-    /* ------------------------------------------------------------------ */
     public function index()
     {
         return view('categorias/index', [
@@ -24,20 +21,13 @@ class Categorias extends BaseController
         ]);
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  FORMULÁRIO DE CRIAÇÃO                                             */
-    /* ------------------------------------------------------------------ */
     public function create()
     {
         return view('categorias/form');
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  SALVAR NOVA CATEGORIA                                             */
-    /* ------------------------------------------------------------------ */
     public function store()
     {
-        // agora inclui 'valor'
         $data = $this->request->getPost(['nome', 'tipo', 'valor']);
 
         if (! $this->validate($this->model->getValidationRules(), [], $data)) {
@@ -51,9 +41,6 @@ class Categorias extends BaseController
         return redirect()->to(site_url('categorias'));
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  FORMULÁRIO DE EDIÇÃO                                              */
-    /* ------------------------------------------------------------------ */
     public function edit($id)
     {
         $cat = $this->model->find($id);
@@ -65,15 +52,10 @@ class Categorias extends BaseController
         return view('categorias/form', ['categoria' => $cat]);
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  ATUALIZAR CATEGORIA                                               */
-    /* ------------------------------------------------------------------ */
     public function update($id)
     {
-        // pega nome, tipo e valor
         $dataInput = $this->request->getPost(['nome', 'tipo', 'valor']);
 
-        // adiciona id só para validação
         $dataForValidation = $dataInput + ['id' => $id];
 
         if (! $this->validate($this->model->getValidationRules(), [], $dataForValidation)) {
@@ -87,9 +69,6 @@ class Categorias extends BaseController
         return redirect()->to(site_url('categorias'));
     }
 
-    /* ------------------------------------------------------------------ */
-    /*  EXCLUIR CATEGORIA                                                 */
-    /* ------------------------------------------------------------------ */
     public function delete($id)
     {
         $this->model->delete($id);
