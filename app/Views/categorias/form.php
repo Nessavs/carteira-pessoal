@@ -3,7 +3,6 @@ if (function_exists('view') && is_file(APPPATH . 'Views/layout/header.php')) {
     echo view('layout/header');
 }
 
-// Detecta se é edição
 $editing = isset($categoria['id']);
 $action  = $editing
     ? site_url('categorias/editar/' . $categoria['id'])
@@ -49,6 +48,7 @@ $action  = $editing
             <div class="form-actions">
                 <button type="submit">Salvar</button>
                 <a href="<?= site_url('categorias') ?>" class="button-back">Voltar</a>
+                <a href="<?= site_url('dashboard') ?>" class="button-dashboard">Dashboard</a>
             </div>
         </form>
     </div>

@@ -9,7 +9,7 @@
 
     <nav>
         <a href="<?= site_url('categorias') ?>">Categorias</a>
-        <a href="<?= site_url('transaction') ?>">Transações</a>
+        <a href="<?= site_url('transacoes') ?>">Transações</a>
         <a href="<?= site_url('logout') ?>">Sair</a>
     </nav>
 </body>

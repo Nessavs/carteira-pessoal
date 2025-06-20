@@ -8,7 +8,11 @@
 <body>
     <div class="container">
         <h2>Categorias</h2>
-        <a href="<?= site_url('categorias/criar') ?>" class="button-new">Nova categoria</a>
+        
+        <div class="actions-top">
+            <a href="<?= site_url('categorias/criar') ?>" class="button-new">Nova categoria</a>
+            <a href="<?= site_url('dashboard') ?>" class="button-dashboard">Dashboard</a>
+        </div>
 
         <table>
             <thead>

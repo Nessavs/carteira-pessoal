@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 1200px;
     margin: auto;
     background-color: #1e1e1e;
     padding: 2rem;
@@ -92,4 +92,36 @@ td a {
 
 td a:hover {
     text-decoration: underline;
+}
+
+.no-data {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+
+.valor-receita {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.valor-despesa {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.tipo-receita {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8em;
+}
+
+.tipo-despesa {
+    background-color: #f44336;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8em;
 } 
