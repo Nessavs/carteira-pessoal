@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+h2 {
+    color: #ffffff;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+}
+
+p {
+    font-size: 1em;
+}
+
+nav {
+    background: #1e1e1e;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+nav a {
+    color: #4CAF50;
+    text-decoration: none;
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #81C784;
+    text-decoration: none;
+} 

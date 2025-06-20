@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head><title>Cadastro</title></head>
+<head>
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="<?= base_url('css/register.css') ?>">
+</head>
 <body>
-    <h2>Cadastro</h2>
-    <form method="post" action="/register">
-        <label>Nome:</label><br>
-        <input type="text" name="nome" required><br>
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br>
-        <label>Senha:</label><br>
-        <input type="password" name="senha" required><br>
-        <button type="submit">Registrar</button>
-    </form>
-    <p>Já tem conta? <a href="/">Faça login</a></p> 
+    <div class="auth-container">
+        <h2>Cadastro</h2>
+        <form method="post" action="/register">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+            
+            <button type="submit">Registrar</button>
+        </form>
+        <p>Já tem conta? <a href="/">Faça login</a></p> 
+    </div>
 </body>
 </html>

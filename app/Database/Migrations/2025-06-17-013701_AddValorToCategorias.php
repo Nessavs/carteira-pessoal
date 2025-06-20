@@ -12,8 +12,8 @@ class AddValorToCategorias extends Migration
             'valor' => [
                 'type'       => 'DECIMAL',
                 'constraint' => '10,2',
-                'null'       => true,        // pode começar vazio
-                'after'      => 'tipo',      // posição opcional
+                'null'       => true,       
+                'after'      => 'tipo',  
             ],
         ]);
     }

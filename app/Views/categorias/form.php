@@ -3,54 +3,57 @@ if (function_exists('view') && is_file(APPPATH . 'Views/layout/header.php')) {
     echo view('layout/header');
 }
 
-// Detecta se é edição
 $editing = isset($categoria['id']);
 $action  = $editing
     ? site_url('categorias/editar/' . $categoria['id'])
     : site_url('categorias/criar');
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title><?= $editing ? 'Editar Categoria' : 'Nova Categoria' ?></title>
+    <link rel="stylesheet" href="<?= base_url('css/categorias-form.css') ?>">
+</head>
+<body>
+    <div class="form-container">
+        <h2><?= $editing ? 'Editar Categoria' : 'Nova Categoria' ?></h2>
 
-<h2><?= $editing ? 'Editar categoria' : 'Nova categoria' ?></h2>
+        <?php if (isset($validation)) : ?>
+            <div class="validation-errors">
+                <?= $validation->listErrors() ?>
+            </div>
+        <?php endif; ?>
 
-<?php if (isset($validation)) : ?>
-    <div style="color:red;margin:10px 0">
-        <?= $validation->listErrors(); ?>
+        <form method="post" action="<?= $action ?>">
+            <?= csrf_field() ?>
+
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" value="<?= esc($categoria['nome'] ?? '') ?>" required>
+
+            <label for="tipo">Tipo</label>
+            <select id="tipo" name="tipo" required>
+                <option value="">-- selecione --</option>
+                <option value="receita" <?= ($categoria['tipo'] ?? '') === 'receita' ? 'selected' : '' ?>>
+                    Receita
+                </option>
+                <option value="despesa" <?= ($categoria['tipo'] ?? '') === 'despesa' ? 'selected' : '' ?>>
+                    Despesa
+                </option>
+            </select>
+
+            <label for="valor">Valor (opcional)</label>
+            <input type="number" id="valor" name="valor" step="0.01" min="0" value="<?= esc($categoria['valor'] ?? '') ?>">
+
+            <div class="form-actions">
+                <button type="submit">Salvar</button>
+                <a href="<?= site_url('categorias') ?>" class="button-back">Voltar</a>
+                <a href="<?= site_url('dashboard') ?>" class="button-dashboard">Dashboard</a>
+            </div>
+        </form>
     </div>
-<?php endif; ?>
-
-<form method="post" action="<?= $action ?>">
-    <?= csrf_field() ?>
-
-    <!-- Nome -->
-    <label>Nome<br>
-        <input type="text" name="nome"
-               value="<?= esc($categoria['nome'] ?? '') ?>" required>
-    </label><br><br>
-
-    <!-- Tipo -->
-    <label>Tipo<br>
-        <select name="tipo" required>
-            <option value="">-- selecione --</option>
-            <option value="receita"
-                <?= ($categoria['tipo'] ?? '') === 'receita' ? 'selected' : '' ?>>
-                Receita
-            </option>
-            <option value="despesa"
-                <?= ($categoria['tipo'] ?? '') === 'despesa' ? 'selected' : '' ?>>
-                Despesa
-            </option>
-        </select>
-    </label><br><br>
-
-    <!-- Valor (opcional) -->
-    <label>Valor (opcional)<br>
-        <input type="number" name="valor" step="0.01" min="0"
-               value="<?= esc($categoria['valor'] ?? '') ?>">
-    </label><br><br>
-
-    <button type="submit">Salvar</button>
-    <a href="<?= site_url('categorias') ?>" style="margin-left:8px">Voltar</a>
-</form>
+</body>
+</html>
 
 <?php
 if (function_exists('view') && is_file(APPPATH . 'Views/layout/footer.php')) {
