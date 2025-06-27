@@ -20,24 +20,22 @@ $routes->get('/logout',      'AuthController::logout');
 
 $routes->get('/dashboard',   'TransacaoController::dashboard');
 
-// CRUD de transações como recurso RESTful
-$routes->resource('transacoes');
+$routes->group('transacoes', function ($routes) {
+    $routes->get('/',                'TransacaoController::index');
+    $routes->get('criar',            'TransacaoController::create');
+    $routes->post('criar',           'TransacaoController::store');
+    $routes->get('editar/(:num)',    'TransacaoController::edit/$1');
+    $routes->post('editar/(:num)',   'TransacaoController::update/$1');
+    $routes->get('excluir/(:num)',   'TransacaoController::delete/$1');
+});
 
-/*
-|--------------------------------------------------------------------------
-| CRUD de Categorias
-|--------------------------------------------------------------------------
-| Rotas protegidas por autenticação (opcional).
-| Se o seu filtro de login se chama 'auth', descomente a linha abaixo.
-*/
-// $routes->group('categorias', ['filter' => 'auth'], function ($routes) {
 $routes->group('categorias', function ($routes) {
-    $routes->get('/',                'Categorias::index');       // listar
-    $routes->get('criar',            'Categorias::create');      // form criar
-    $routes->post('criar',           'Categorias::store');       // inserir
-    $routes->get('editar/(:num)',    'Categorias::edit/$1');     // form editar
-    $routes->post('editar/(:num)',   'Categorias::update/$1');   // atualizar
-    $routes->get('excluir/(:num)',   'Categorias::delete/$1');   // remover
+    $routes->get('/',                'Categorias::index');
+    $routes->get('criar',            'Categorias::create');
+    $routes->post('criar',           'Categorias::store');
+    $routes->get('editar/(:num)',    'Categorias::edit/$1');
+    $routes->post('editar/(:num)',   'Categorias::update/$1');
+    $routes->get('excluir/(:num)',   'Categorias::delete/$1');
 });
 
 /*

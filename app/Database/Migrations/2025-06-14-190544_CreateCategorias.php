@@ -33,12 +33,12 @@ class CreateCategorias extends Migration
             ],
         ]);
 
-        $this->forge->addKey('id', true);           // PK
-        $this->forge->createTable('categorias');     // cria a tabela
+        $this->forge->addKey('id', true);          
+        $this->forge->createTable('categorias');    
     }
 
     public function down()
     {
-        $this->forge->dropTable('categorias');       // rollback
+        $this->forge->dropTable('categorias');       
     }
 }
