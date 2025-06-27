@@ -33,4 +33,70 @@ nav a {
 nav a:hover {
     color: #81C784;
     text-decoration: none;
-} 
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid #4CAF50;
+}
+
+.stat-card.receitas {
+    border-left-color: #4CAF50;
+}
+
+.stat-card.despesas {
+    border-left-color: #f44336;
+}
+
+.stat-card.saldo {
+    border-left-color: #2196F3;
+}
+
+.stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    color: #ccc;
+    border: none;
+    padding: 0;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: #fff;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.chart-card {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.chart-card h3 {
+    margin: 0 0 1rem 0;
+    color: #ffffff;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+}
+
+.chart-card canvas {
+    max-height: 300px;
+}

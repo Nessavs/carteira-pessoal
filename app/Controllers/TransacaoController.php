@@ -37,7 +37,38 @@ class TransacaoController extends BaseController
         if ($redirect) return $redirect;
 
         $usuario = session()->get('usuario');
-        return view('dashboard', ['usuario' => $usuario]);
+        $usuarioId = $this->getCurrentUserId();
+
+        $transacoes = $this->transacaoModel->getTransacoesWithCategoria($usuarioId);
+        
+        $totalReceitas = 0;
+        $totalDespesas = 0;
+        $categorias = [];
+        
+        foreach ($transacoes as $transacao) {
+            if ($transacao['tipo'] === 'receita') {
+                $totalReceitas += $transacao['valor'];
+            } else {
+                $totalDespesas += $transacao['valor'];
+            }
+            
+            $categoriaNome = $transacao['categoria_nome'] ?? 'Sem categoria';
+            if (!isset($categorias[$categoriaNome])) {
+                $categorias[$categoriaNome] = 0;
+            }
+            $categorias[$categoriaNome] += $transacao['valor'];
+        }
+
+        arsort($categorias);
+        $topCategorias = array_slice($categorias, 0, 5, true);
+
+        return view('dashboard', [
+            'usuario' => $usuario,
+            'totalReceitas' => $totalReceitas,
+            'totalDespesas' => $totalDespesas,
+            'topCategorias' => $topCategorias,
+            'totalTransacoes' => count($transacoes)
+        ]);
     }
 
     public function index()
